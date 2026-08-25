@@ -1,0 +1,30 @@
+create database if not exists clinia_Vinicius
+default character set utf8mb4
+collate utf8mb4_0900_ai_ci;
+use clinia_Vinicius;
+
+create table if not exists paciente(
+id int primary key auto_increment,
+nome varchar (30) not null,
+data_nascimento date,
+altura decimal(3,2),
+status_cadastro boolean,
+genero enum ('M','F','OUTRO')
+)character set utf8mb4;
+desc paciente;
+
+create table if not exists medico(
+id int primary key auto_increment,
+nome varchar (30) not null
+)character set utf8mb4; 
+desc medico;
+
+create table if not exists consulta(
+id int primary key auto_increment,
+data_time datetime,
+id_paciente int,
+id_medico int,
+foreign key(id_paciente) references paciente(id),
+foreign key(id_medico) references medico(id)
+)character set utf8mb4;
+desc consulta;
